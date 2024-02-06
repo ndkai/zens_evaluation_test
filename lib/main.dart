@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'features/product_list/presentation/widgets/product_list_screen.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Poppins',
       ),
-      home: Container(),
+      home: ProductListScreen(),
     );
   }
 }

@@ -29,5 +29,8 @@ flutter:
       fonts:
         - asset: fonts/poppins/Poppins-Regular.ttf
         - asset: fonts/poppins/Poppins-Bold.ttf
+    - family: Righteous
+      fonts:
+        - asset: fonts/righteous/Righteous-Regular.ttf
   assets:
     - assets/images/
