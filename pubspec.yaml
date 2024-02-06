@@ -34,3 +34,4 @@ flutter:
         - asset: fonts/righteous/Righteous-Regular.ttf
   assets:
     - assets/images/
+    - assets/icons/

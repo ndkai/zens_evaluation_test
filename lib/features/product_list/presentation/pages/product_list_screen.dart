@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:zens_evaluation_test/core/size_config.dart';
 
 import '../../../../core/helper.dart';
+import '../widgets/product_list_action_bar.dart';
 import '../widgets/product_list_header.dart';
 
 class ProductListScreen extends StatelessWidget {
@@ -15,7 +16,8 @@ class ProductListScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            ProductListHeader()
+            ProductListHeader(),
+            ProductListActionBar(),
           ],
         ),
       ),
@@ -23,3 +25,4 @@ class ProductListScreen extends StatelessWidget {
   }
 
 }
+
