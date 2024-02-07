@@ -40,7 +40,6 @@ class PickOptionWidget extends StatelessWidget {
           ],
         ),
         SizedBox(
-          height: SizeConfig.screenHeight! * 0.2,
           child: ProviderWidget<List<Option>>(
               future: getOptionsUseCase.call(NoParam()),
               onLoading: () {
@@ -56,42 +55,8 @@ class PickOptionWidget extends StatelessWidget {
                   // The initial value of the selected radio button.
                   builder: (context, snapshot) {
                     int selectedValue = snapshot.data ?? -1;
-                    return MediaQuery.removePadding(
-                      context: context,
-                      removeTop: true,
-                      child: ListView.builder(
-                        itemCount: data!.length,
-                        itemBuilder: (context, index) {
-                          return Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Radio(
-                                    value: index,
-                                    groupValue: selectedValue,
-                                    onChanged: (value) {
-                                      _toggleSizeController
-                                          .updateState(value as int);
-                                    },
-                                  ),
-                                  Text(data![index].name!,
-                                      style: const TextStyle(
-                                          fontFamily: 'Poppins',
-                                          fontSize: 16.0,
-                                          color: Colors.black))
-                                ],
-                              ),
-                              Text(
-                                  "+${Helper.formatCurrency(data![index].price!)}",
-                                  style: const TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 16.0,
-                                      color: Colors.black))
-                            ],
-                          );
-                        },
-                      ),
+                    return Column(
+                        children: _buildItem(data!, selectedValue)
                     );
                   },
                 );
@@ -99,5 +64,40 @@ class PickOptionWidget extends StatelessWidget {
         )
       ],
     );
+  }
+
+  List<Widget> _buildItem(List<Option> options, int selectedValue){
+    List<Widget> widgets = <Widget>[];
+    for(var i = 0; i < options.length; i++){
+      widgets.add(Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              Radio(
+                value: i,
+                groupValue: selectedValue,
+                onChanged: (value) {
+                  _toggleSizeController
+                      .updateState(value as int);
+                },
+              ),
+              Text(options![i].name!,
+                  style: const TextStyle(
+                      fontFamily: 'Poppins',
+                      fontSize: 16.0,
+                      color: Colors.black))
+            ],
+          ),
+          Text(
+              "+${Helper.formatCurrency(options![i].price!)}",
+              style: const TextStyle(
+                  fontFamily: 'Poppins',
+                  fontSize: 16.0,
+                  color: Colors.black))
+        ],
+      ));
+    }
+    return widgets;
   }
 }

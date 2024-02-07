@@ -38,7 +38,6 @@ class PickToppingWidget extends StatelessWidget {
           ],
         ),
         SizedBox(
-          height: SizeConfig.screenHeight! * 0.2,
           child: ProviderWidget<List<Topping>>(
               future: getToppingsUseCase.call(NoParam()),
               onLoading: () {
@@ -57,39 +56,9 @@ class PickToppingWidget extends StatelessWidget {
                     return MediaQuery.removePadding(
                       context: context,
                       removeTop: true,
-                      child: ListView.builder(
-                        itemCount: data!.length,
-                        itemBuilder: (context, index) {
-                          return Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Radio(
-                                    value: index,
-                                    groupValue: selectedValue,
-                                    onChanged: (value) {
-                                      _toggleSizeController
-                                          .updateState(value as int);
-                                    },
-                                  ),
-                                  Text(data![index].name!,
-                                      style: const TextStyle(
-                                          fontFamily: 'Poppins',
-                                          fontSize: 16.0,
-                                          color: Colors.black))
-                                ],
-                              ),
-                              Text(
-                                  "+${Helper.formatCurrency(data![index].price!)}",
-                                  style: const TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 16.0,
-                                      color: Colors.black))
-                            ],
-                          );
-                        },
-                      ),
+                      child: Column(
+                          children: _buildItem(data!, selectedValue)
+                      )
                     );
                   },
                 );
@@ -97,5 +66,39 @@ class PickToppingWidget extends StatelessWidget {
         )
       ],
     );
+  }
+  List<Widget> _buildItem(List<Topping> toppings, int selectedValue){
+    List<Widget> widgets = <Widget>[];
+    for(var i = 0; i < toppings.length; i++){
+      widgets.add(Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              Radio(
+                value: i,
+                groupValue: selectedValue,
+                onChanged: (value) {
+                  _toggleSizeController
+                      .updateState(value as int);
+                },
+              ),
+              Text(toppings![i].name!,
+                  style: const TextStyle(
+                      fontFamily: 'Poppins',
+                      fontSize: 16.0,
+                      color: Colors.black))
+            ],
+          ),
+          Text(
+              "+${Helper.formatCurrency(toppings![i].price!)}",
+              style: const TextStyle(
+                  fontFamily: 'Poppins',
+                  fontSize: 16.0,
+                  color: Colors.black))
+        ],
+      ));
+    }
+    return widgets;
   }
 }
