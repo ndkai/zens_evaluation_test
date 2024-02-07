@@ -3,7 +3,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:zens_evaluation_test/features/product_list/data/models/option.dart';
+import 'package:zens_evaluation_test/features/drink_detail/data/models/option.dart';
 
 import '../models/drink.dart';
 

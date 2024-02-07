@@ -1,5 +1,5 @@
 import '../../data/models/drink.dart';
-import '../../data/models/option.dart';
+import '../../../drink_detail/data/models/option.dart';
 
 abstract class ProductListRepo{
   Future<List<Option>> getOptions();

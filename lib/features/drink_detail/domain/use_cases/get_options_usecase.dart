@@ -2,7 +2,7 @@ import 'package:zens_evaluation_test/features/product_list/domain/repositories/p
 
 import '../../../../core/usercase.dart';
 import '../../data/models/option.dart';
-import '../entities/no_param.dart';
+import '../../../product_list/domain/entities/no_param.dart';
 
 class GetOptionsUseCase extends UseCase<List<Option>, NoParam>{
   final ProductListRepo productListRepo;
