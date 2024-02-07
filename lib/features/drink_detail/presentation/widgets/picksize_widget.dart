@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:zens_evaluation_test/core/my_stream_controller.dart';
-import 'package:zens_evaluation_test/core/size_config.dart';
 
 import '../../../../core/helper.dart';
 import '../../../../core/provider_widget.dart';
@@ -10,7 +9,8 @@ import '../../domain/use_cases/get_size_usecase.dart';
 
 class PickSizeWidget extends StatelessWidget {
   final GetSizeUseCase getSizeUseCase;
-  PickSizeWidget({super.key, required this.getSizeUseCase});
+  final ValueChanged<double> onChanged;
+  PickSizeWidget({super.key, required this.getSizeUseCase, required this.onChanged});
 
   final MyStreamController<int> _toggleSizeController = MyStreamController<int>();
   @override
@@ -73,17 +73,18 @@ class PickSizeWidget extends StatelessWidget {
                     value: i,
                     groupValue: selectedValue,
                     onChanged: (value) {
+                      onChanged(sizes[i].price!);
                       _toggleSizeController.updateState(value as int);
                     },
                   ),
-                  Text(sizes![i].name!,  style: const TextStyle(
+                  Text(sizes[i].name!,  style: const TextStyle(
                       fontFamily: 'Poppins',
                       fontSize: 16.0,
                       color: Colors.black
                   ))
                 ],
               ),
-              Text("+${Helper.formatCurrency(sizes![i].price!)}",  style: const TextStyle(
+              Text("+${Helper.formatCurrency(sizes[i].price!)}",  style: const TextStyle(
                   fontFamily: 'Poppins',
                   fontSize: 16.0,
                   color: Colors.black

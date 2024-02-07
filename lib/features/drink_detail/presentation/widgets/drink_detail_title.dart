@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/helper.dart';
-import '../../../../core/size_config.dart';
 
 class DrinkDetailTitle extends StatelessWidget {
   final String name;
@@ -29,7 +28,7 @@ class DrinkDetailTitle extends StatelessWidget {
               fontFamily: 'Poppins',
               fontSize: 16.0,
             )),
-        SizedBox(height: 8,),
+        const SizedBox(height: 8,),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -42,7 +41,7 @@ class DrinkDetailTitle extends StatelessWidget {
                   size: 20,
                 ),
                 Text(
-                  "   ${rating}",
+                  "   $rating",
                   style: const TextStyle(
                       fontFamily: 'Poppins',
                       fontSize: 12.0,
@@ -55,7 +54,7 @@ class DrinkDetailTitle extends StatelessWidget {
               children: [
                 Text(
                   Helper.formatCurrency(price),
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: 'Poppins',
                     fontSize: 14.0,
                     fontWeight: FontWeight.w500,
@@ -63,7 +62,7 @@ class DrinkDetailTitle extends StatelessWidget {
                     decorationThickness: 2.0,
                   ),
                 ),
-                SizedBox(width: 10,),
+                const SizedBox(width: 10,),
                 Text(
                   Helper.formatCurrency(salePrice),
                   style: const TextStyle(

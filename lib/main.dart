@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Poppins',
       ),
-      home: ProductListScreen(),
+      home: const ProductListScreen(),
     );
   }
 }

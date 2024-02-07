@@ -30,7 +30,7 @@ class DrinkListView extends StatelessWidget {
                 itemCount: data!.length,
                 itemBuilder: (context, index) {
                   return DrinkListItem(
-                    drink: data![index],
+                    drink: data[index],
                   );
                 });
           }),

@@ -2,7 +2,6 @@ import 'package:zens_evaluation_test/features/product_list/domain/repositories/p
 
 import '../../../../core/usercase.dart';
 import '../../data/models/drink.dart';
-import '../../../drink_detail/data/models/option.dart';
 import '../entities/no_param.dart';
 
 class GetDrinksUseCase extends UseCase<List<Drink>, NoParam>{

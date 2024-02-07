@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:zens_evaluation_test/core/my_stream_controller.dart';
-import 'package:zens_evaluation_test/core/size_config.dart';
 import 'package:zens_evaluation_test/features/drink_detail/data/models/topping.dart';
 import 'package:zens_evaluation_test/features/drink_detail/domain/use_cases/get_toppings_usecase.dart';
 
 import '../../../../core/helper.dart';
 import '../../../../core/provider_widget.dart';
 import '../../../product_list/domain/entities/no_param.dart';
-import '../../data/models/size.dart';
-import '../../domain/use_cases/get_size_usecase.dart';
 
 class PickToppingWidget extends StatelessWidget {
   final GetToppingsUseCase getToppingsUseCase;
-
-  PickToppingWidget({super.key, required this.getToppingsUseCase});
+  final ValueChanged<double> onChanged;
+  PickToppingWidget({super.key, required this.getToppingsUseCase, required this.onChanged});
 
   final MyStreamController<int> _toggleSizeController =
       MyStreamController<int>();
@@ -81,11 +78,12 @@ class PickToppingWidget extends StatelessWidget {
                     value: i,
                     groupValue: selectedValue,
                     onChanged: (value) {
+                      onChanged(toppings[i].price!);
                       _toggleSizeController
                           .updateState(value as int);
                     },
                   ),
-                  Text(toppings![i].name!,
+                  Text(toppings[i].name!,
                       style: const TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 16.0,
@@ -93,7 +91,7 @@ class PickToppingWidget extends StatelessWidget {
                 ],
               ),
               Text(
-                  "+${Helper.formatCurrency(toppings![i].price!)}",
+                  "+${Helper.formatCurrency(toppings[i].price!)}",
                   style: const TextStyle(
                       fontFamily: 'Poppins',
                       fontSize: 16.0,

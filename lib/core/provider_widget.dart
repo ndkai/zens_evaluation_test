@@ -12,7 +12,6 @@ class ProviderWidget<T> extends StatelessWidget {
     return FutureBuilder(
       future: future,
       builder: (context, snapshot){
-        print(snapshot.connectionState);
         if (snapshot.connectionState == ConnectionState.waiting) {
           return onLoading();
         }
