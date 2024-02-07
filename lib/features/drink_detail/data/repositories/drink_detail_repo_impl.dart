@@ -3,6 +3,7 @@ import 'package:zens_evaluation_test/features/drink_detail/data/models/option.da
 
 import '../../domain/repositories/drink_detail_repo.dart';
 import '../data_sources/drink_detailed_datasource.dart';
+import '../models/size.dart';
 
 class DrinkDetailRepoImpl implements DrinkDetailRepo{
   final DrinkDetailDataSource detailDataSource;
@@ -11,6 +12,11 @@ class DrinkDetailRepoImpl implements DrinkDetailRepo{
   @override
   Future<List<Option>> getOptions() {
     return detailDataSource.getOptions();
+  }
+
+  @override
+  Future<List<DrinkSize>> getSizes() {
+    return detailDataSource.getSizes();
   }
 
 }
