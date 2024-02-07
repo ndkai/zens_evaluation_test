@@ -6,14 +6,11 @@ import '../../../../core/keys.dart';
 import '../../../../core/my_stream_controller.dart';
 
 class ProductListActionBar extends StatelessWidget {
+  ProductListActionBar({Key? key}) : super(key: key);
 
-  ProductListActionBar({super.key, required this.valueChanged});
-  final ValueChanged valueChanged;
-  final MyStreamController<int> _dropdownController =
-      MyStreamController<int>();
+  final MyStreamController<int> _dropdownController = MyStreamController<int>();
 
-  final List<int> dropdownIndex = <int>[0,1,2];
-
+  final List<int> dropdownIndex = const <int>[0, 1, 2];
 
   @override
   Widget build(BuildContext context) {
@@ -25,35 +22,41 @@ class ProductListActionBar extends StatelessWidget {
           children: [
             const Text("Tìm kiếm theo:   "),
             StreamBuilder<int>(
-                stream: _dropdownController.stream,
-                initialData: dropdownIndex.first,
-                builder: (context, snapshot) {
-                  return DropdownButton<int>(
-                    value: snapshot.data!,
-                    onChanged: (newValue) {
-                      drinkListViewKey.currentState!.updateSortMethod(newValue!);
-                      _dropdownController.updateState(newValue);
-                    },
-                    items: dropdownIndex.map((int index) {
-                      return DropdownMenuItem<int>(
-                        value: index,
-                        child: Text(
-                          Constant.dropdownContent[index],
-                          style: const TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 16.0,
-                              color: Color(0xFFFE724C)),
+              stream: _dropdownController.stream,
+              initialData: dropdownIndex.first,
+              builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
+                return DropdownButton<int>(
+                  value: snapshot.data!,
+                  onChanged: (newValue) {
+                    _handleDropdownChange(newValue);
+                  },
+                  items: dropdownIndex.map((int index) {
+                    return DropdownMenuItem<int>(
+                      value: index,
+                      child: Text(
+                        Constant.dropdownContent[index],
+                        style: const TextStyle(
+
+                          fontSize: 16.0,
+                          color: Color(0xFFFE724C),
                         ),
-                      );
-                    }).toList(),
-                  );
-                })
+                      ),
+                    );
+                  }).toList(),
+                );
+              },
+            )
           ],
         ),
-        CartCountWidget(key: cartCountWidgetKey,)
+        CartCountWidget(key: cartCountWidgetKey),
       ],
     );
   }
 
-
+  void _handleDropdownChange(int? newValue) {
+    if (newValue != null) {
+      drinkListViewKey.currentState!.updateSortMethod(newValue);
+      _dropdownController.updateState(newValue);
+    }
+  }
 }

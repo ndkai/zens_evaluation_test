@@ -14,7 +14,10 @@ class ProductListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    GetDrinksUseCase getDrinksUseCase = GetDrinksUseCase(ProductListRepoImpl(ProductListDataSourceImpl()));
+
+    final GetDrinksUseCase getDrinksUseCase =
+    GetDrinksUseCase(ProductListRepoImpl(ProductListDataSourceImpl()));
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -22,14 +25,12 @@ class ProductListScreen extends StatelessWidget {
           child: Column(
             children: [
               const ProductListHeader(),
-              ProductListActionBar(valueChanged: (value) {  },),
-              DrinkListView(getDrinksUseCase: getDrinksUseCase,)
+              ProductListActionBar(),
+              DrinkListView(getDrinksUseCase: getDrinksUseCase),
             ],
           ),
         ),
       ),
     );
   }
-
 }
-

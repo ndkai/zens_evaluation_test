@@ -10,25 +10,26 @@ import '../../domain/use_cases/get_size_usecase.dart';
 class PickSizeWidget extends StatelessWidget {
   final GetSizeUseCase getSizeUseCase;
   final ValueChanged<double> onChanged;
-  PickSizeWidget({super.key, required this.getSizeUseCase, required this.onChanged});
 
-  final MyStreamController<int> _toggleSizeController = MyStreamController<int>();
+  PickSizeWidget(
+      {super.key, required this.getSizeUseCase, required this.onChanged});
+
+  final MyStreamController<int> _toggleSizeController =
+      MyStreamController<int>();
+
   @override
   Widget build(BuildContext context) {
-
     return Column(
       children: [
         const Row(
           children: [
             Text("Chọn size",
                 style: TextStyle(
-                  fontFamily: 'Poppins',
                   fontWeight: FontWeight.bold,
                   fontSize: 16.0,
                 )),
             Text("(Bắt buộc)",
                 style: TextStyle(
-                  fontFamily: 'Poppins',
                   fontSize: 16.0,
                 ))
           ],
@@ -45,12 +46,11 @@ class PickSizeWidget extends StatelessWidget {
               onLoaded: (data) {
                 return StreamBuilder<int>(
                   stream: _toggleSizeController.stream,
-                  initialData: -1, // The initial value of the selected radio button.
+                  initialData: -1,
+                  // The initial value of the selected radio button.
                   builder: (context, snapshot) {
                     int selectedValue = snapshot.data ?? -1;
-                    return Column(
-                      children: _buildItem(data!, selectedValue)
-                    );
+                    return Column(children: _buildItem(data!, selectedValue));
                   },
                 );
               }),
@@ -59,9 +59,9 @@ class PickSizeWidget extends StatelessWidget {
     );
   }
 
-  List<Widget> _buildItem(List<DrinkSize> sizes, int selectedValue){
+  List<Widget> _buildItem(List<DrinkSize> sizes, int selectedValue) {
     List<Widget> widgets = <Widget>[];
-    for(var i = 0; i < sizes.length; i++){
+    for (var i = 0; i < sizes.length; i++) {
       widgets.add(Column(
         children: [
           Row(
@@ -77,18 +77,13 @@ class PickSizeWidget extends StatelessWidget {
                       _toggleSizeController.updateState(value as int);
                     },
                   ),
-                  Text(sizes[i].name!,  style: const TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 16.0,
-                      color: Colors.black
-                  ))
+                  Text(sizes[i].name!,
+                      style:
+                          const TextStyle(fontSize: 16.0, color: Colors.black))
                 ],
               ),
-              Text("+${Helper.formatCurrency(sizes[i].price!)}",  style: const TextStyle(
-                  fontFamily: 'Poppins',
-                  fontSize: 16.0,
-                  color: Colors.black
-              ))
+              Text("+${Helper.formatCurrency(sizes[i].price!)}",
+                  style: const TextStyle(fontSize: 16.0, color: Colors.black))
             ],
           ),
           const Divider()

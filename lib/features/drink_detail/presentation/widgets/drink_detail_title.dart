@@ -18,14 +18,14 @@ class DrinkDetailTitle extends StatelessWidget {
         Text(
           name,
           style: const TextStyle(
-            fontFamily: 'Poppins',
+
             fontWeight: FontWeight.bold,
             fontSize: 20.0,
           ),
         ),
         Text(description,
             style: const TextStyle(
-              fontFamily: 'Poppins',
+
               fontSize: 16.0,
             )),
         const SizedBox(height: 8,),
@@ -43,7 +43,7 @@ class DrinkDetailTitle extends StatelessWidget {
                 Text(
                   "   $rating",
                   style: const TextStyle(
-                      fontFamily: 'Poppins',
+
                       fontSize: 12.0,
                       fontWeight: FontWeight.bold),
                   overflow: TextOverflow.ellipsis,
@@ -55,7 +55,7 @@ class DrinkDetailTitle extends StatelessWidget {
                 Text(
                   Helper.formatCurrency(price),
                   style: const TextStyle(
-                    fontFamily: 'Poppins',
+
                     fontSize: 14.0,
                     fontWeight: FontWeight.w500,
                     decoration: TextDecoration.lineThrough,

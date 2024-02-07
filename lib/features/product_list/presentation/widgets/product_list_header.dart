@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import '../../../../core/size_config.dart';
 
 class ProductListHeader extends StatelessWidget {
-  const ProductListHeader({super.key});
+  const ProductListHeader({Key? key});
 
   @override
   Widget build(BuildContext context) {
+    final double screenHeight = SizeConfig.screenHeight ?? 0.0;
+
     return SizedBox(
-      height: SizeConfig.screenHeight! * 0.3,
+      height: screenHeight * 0.3,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -18,26 +20,21 @@ class ProductListHeader extends StatelessWidget {
             children: [
               Text(
                 "Trà",
-                style: TextStyle(
-                  // You can use Poppins as the default font for this specific text widget.
-                  fontFamily: 'Poppins',
+                style:  TextStyle(
                   fontSize: 20.0,
                 ),
               ),
               Text(
                 "Mix",
                 style: TextStyle(
-                  // You can use Poppins as the default font for this specific text widget.
-                    fontFamily: 'Righteous',
-                    fontSize: 40.0,
-                    color: Color(0xFFFE724C)
+                  fontFamily: 'Righteous',
+                  fontSize: 40.0,
+                  color: Color(0xFFFE724C),
                 ),
               ),
               Text(
                 "40 sự lựa chọn cho bạn",
                 style: TextStyle(
-                  // You can use Poppins as the default font for this specific text widget.
-                  fontFamily: 'Poppins',
                   fontSize: 16.0,
                 ),
               ),
@@ -48,4 +45,6 @@ class ProductListHeader extends StatelessWidget {
       ),
     );
   }
+
+
 }

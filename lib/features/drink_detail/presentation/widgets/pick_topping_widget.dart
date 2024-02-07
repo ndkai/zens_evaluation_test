@@ -23,13 +23,13 @@ class PickToppingWidget extends StatelessWidget {
           children: [
             Text("Chọn món ăn kèm",
                 style: TextStyle(
-                  fontFamily: 'Poppins',
+
                   fontWeight: FontWeight.bold,
                   fontSize: 16.0,
                 )),
             Text("(Không bắt buộc)",
                 style: TextStyle(
-                  fontFamily: 'Poppins',
+
                   fontSize: 16.0,
                 ))
           ],
@@ -85,7 +85,7 @@ class PickToppingWidget extends StatelessWidget {
                   ),
                   Text(toppings[i].name!,
                       style: const TextStyle(
-                          fontFamily: 'Poppins',
+
                           fontSize: 16.0,
                           color: Colors.black))
                 ],
@@ -93,7 +93,7 @@ class PickToppingWidget extends StatelessWidget {
               Text(
                   "+${Helper.formatCurrency(toppings[i].price!)}",
                   style: const TextStyle(
-                      fontFamily: 'Poppins',
+
                       fontSize: 16.0,
                       color: Colors.black))
             ],

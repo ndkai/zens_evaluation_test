@@ -28,7 +28,10 @@ class DrinkListView extends StatelessWidget {
             return const SizedBox();
           },
           onLoaded: (data) {
-            return BuildDrinkLisView(key: drinkListViewKey, drinks: data!,);
+            return BuildDrinkLisView(
+              key: drinkListViewKey,
+              drinks: data!,
+            );
           }),
     );
   }
@@ -36,6 +39,7 @@ class DrinkListView extends StatelessWidget {
 
 class BuildDrinkLisView extends StatefulWidget {
   final List<Drink> drinks;
+
   const BuildDrinkLisView({super.key, required this.drinks});
 
   @override
@@ -44,18 +48,20 @@ class BuildDrinkLisView extends StatefulWidget {
 
 class BuildDrinkLisViewState extends State<BuildDrinkLisView> {
   late List<Drink> drinks;
-  
+
   @override
   void initState() {
     super.initState();
     drinks = widget.drinks;
   }
+
   final MyStreamController<int> listViewArrangeController =
-  MyStreamController<int>();
-  
-  void updateSortMethod(int method){
+      MyStreamController<int>();
+
+  void updateSortMethod(int method) {
     listViewArrangeController.updateState(method);
   }
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
@@ -74,7 +80,6 @@ class BuildDrinkLisViewState extends State<BuildDrinkLisView> {
     );
   }
 }
-
 
 class DrinkListItem extends StatelessWidget {
   final Drink drink;
@@ -109,7 +114,6 @@ class DrinkListItem extends StatelessWidget {
               Text(
                 drink.name!,
                 style: const TextStyle(
-                  fontFamily: 'Poppins',
                   fontWeight: FontWeight.bold,
                   fontSize: 20.0,
                 ),
@@ -117,7 +121,6 @@ class DrinkListItem extends StatelessWidget {
               Text(
                 drink.description!,
                 style: const TextStyle(
-                  fontFamily: 'Poppins',
                   fontSize: 16.0,
                 ),
                 overflow: TextOverflow.ellipsis,
@@ -136,7 +139,6 @@ class DrinkListItem extends StatelessWidget {
                       Text(
                         "  ${drink.rating!}",
                         style: const TextStyle(
-                          fontFamily: 'Poppins',
                           fontSize: 12.0,
                         ),
                         overflow: TextOverflow.ellipsis,
@@ -148,7 +150,6 @@ class DrinkListItem extends StatelessWidget {
                       Text(
                         "  ${drink.favorite!}",
                         style: const TextStyle(
-                          fontFamily: 'Poppins',
                           fontSize: 12.0,
                         ),
                         overflow: TextOverflow.ellipsis,
@@ -165,7 +166,6 @@ class DrinkListItem extends StatelessWidget {
                         content: Text(
                           'Đã thêm vào giỏ hàng',
                           style: TextStyle(
-                            fontFamily: 'Poppins',
                             fontSize: 14.0,
                           ),
                           overflow: TextOverflow.ellipsis,
@@ -192,7 +192,6 @@ class DrinkListItem extends StatelessWidget {
                   child: Text(
                     Helper.formatCurrency(drink.salePrice!),
                     style: const TextStyle(
-                      fontFamily: 'Poppins',
                       fontWeight: FontWeight.w600,
                       fontSize: 14.0,
                     ),
