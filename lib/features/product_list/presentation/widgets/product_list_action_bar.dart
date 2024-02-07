@@ -32,9 +32,9 @@ class ProductListActionBar extends StatelessWidget {
                     value: snapshot.data!,
                     onChanged: (newValue) {
                       drinkListViewKey.currentState!.updateSortMethod(newValue!);
-                      _dropdownController.updateState(newValue!);
+                      _dropdownController.updateState(newValue);
                     },
-                    items: dropdownIndex!.map((int index) {
+                    items: dropdownIndex.map((int index) {
                       return DropdownMenuItem<int>(
                         value: index,
                         child: Text(
