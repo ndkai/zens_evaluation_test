@@ -11,7 +11,7 @@ class ProductListActionBar extends StatelessWidget {
 
   ProductListActionBar({super.key, required this.getOptionsUseCase});
 
-  final DropdownController _streamController = DropdownController();
+  final DropdownController _dropdownController = DropdownController();
 
   @override
   Widget build(BuildContext context) {
@@ -32,22 +32,27 @@ class ProductListActionBar extends StatelessWidget {
                   return const SizedBox();
                 },
                 onLoaded: (data) {
-                  return DropdownButton<Option>(
-                    value: data![0],
-                    onChanged: (Option? newValue) {
-
-                    },
-                    items: data.map((Option option) {
-                      return DropdownMenuItem<Option>(
-                        value: option,
-                        child: Text(option.name!, style: const TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: 16.0,
-                            color: Color(0xFFFE724C)
-                        ),),
-                      );
-                    }).toList(),
-                  );
+                  return StreamBuilder<Option>(
+                      stream: _dropdownController.stream,
+                      initialData: data!.first,
+                      builder: (context, snapshot){
+                    return DropdownButton<Option>(
+                      value: snapshot.data!,
+                      onChanged: (newValue){
+                        _dropdownController.updateState(newValue!);
+                      },
+                      items: data.map((Option option) {
+                        return DropdownMenuItem<Option>(
+                          value: option,
+                          child: Text(option.name!, style: const TextStyle(
+                              fontFamily: 'Poppins',
+                              fontSize: 16.0,
+                              color: Color(0xFFFE724C)
+                          ),),
+                        );
+                      }).toList(),
+                    );
+                  });
                 }),
           ],
         ),
