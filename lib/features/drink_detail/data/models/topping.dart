@@ -1,7 +1,7 @@
 class Topping {
   int? id;
   String? name;
-  int? price;
+  double? price;
 
   Topping({this.id, this.name, this.price});
 

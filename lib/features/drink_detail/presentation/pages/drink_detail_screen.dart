@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:zens_evaluation_test/core/helper.dart';
 import 'package:zens_evaluation_test/core/size_config.dart';
 import 'package:zens_evaluation_test/features/drink_detail/data/data_sources/drink_detailed_datasource.dart';
 import 'package:zens_evaluation_test/features/drink_detail/data/repositories/drink_detail_repo_impl.dart';
+import 'package:zens_evaluation_test/features/drink_detail/domain/use_cases/get_toppings_usecase.dart';
+import 'package:zens_evaluation_test/features/drink_detail/presentation/widgets/pick_topping_widget.dart';
 import 'package:zens_evaluation_test/features/product_list/data/models/drink.dart';
-import 'package:zens_evaluation_test/features/product_list/presentation/widgets/cart_count_widget.dart';
 
-import '../../../product_list/data/data_sources/product_list_datasource.dart';
 import '../../domain/use_cases/get_size_usecase.dart';
 import '../widgets/drink_detail_header.dart';
 import '../widgets/drink_detail_title.dart';
-import '../widgets/pick_size_dish.dart';
 import '../widgets/picksize_widget.dart';
 
 class DrinkDetailScreen extends StatelessWidget {
@@ -21,6 +19,7 @@ class DrinkDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     GetSizeUseCase getSizeUseCase = GetSizeUseCase(DrinkDetailRepoImpl(DrinkDetailDataSourceImpl()));
+    GetToppingsUseCase getToppingsUseCase = GetToppingsUseCase(DrinkDetailRepoImpl(DrinkDetailDataSourceImpl()));
     return Scaffold(
       body: Stack(
         children: [
@@ -40,7 +39,7 @@ class DrinkDetailScreen extends StatelessWidget {
                 PickSizeWidget(
                   getSizeUseCase: getSizeUseCase,
                 ),
-                PickSideDishWidget( getSizeUseCase: getSizeUseCase,)
+                PickToppingWidget( getToppingsUseCase: getToppingsUseCase,)
               ],
             ),
           )
