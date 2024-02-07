@@ -19,7 +19,6 @@ class ProductListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    GetOptionsUseCase usecase = GetOptionsUseCase(ProductListRepoImpl(ProductListDataSourceImpl()));
     GetDrinksUseCase getDrinksUseCase = GetDrinksUseCase(ProductListRepoImpl(ProductListDataSourceImpl()));
     return Scaffold(
       body: SafeArea(
@@ -28,7 +27,7 @@ class ProductListScreen extends StatelessWidget {
           child: Column(
             children: [
               const ProductListHeader(),
-              ProductListActionBar(getOptionsUseCase: usecase),
+              // ProductListActionBar(),
               DrinkListView(getDrinksUseCase: getDrinksUseCase,)
             ],
           ),
