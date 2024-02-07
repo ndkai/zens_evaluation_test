@@ -23,12 +23,15 @@ class ProductListScreen extends StatelessWidget {
     GetDrinksUseCase getDrinksUseCase = GetDrinksUseCase(ProductListRepoImpl(ProductListDataSourceImpl()));
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            const ProductListHeader(),
-            ProductListActionBar(getOptionsUseCase: usecase),
-            DrinkListView(getDrinksUseCase: getDrinksUseCase,)
-          ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: Column(
+            children: [
+              const ProductListHeader(),
+              ProductListActionBar(getOptionsUseCase: usecase),
+              DrinkListView(getDrinksUseCase: getDrinksUseCase,)
+            ],
+          ),
         ),
       ),
     );

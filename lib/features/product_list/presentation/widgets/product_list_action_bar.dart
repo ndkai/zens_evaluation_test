@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:zens_evaluation_test/features/product_list/domain/entities/no_param.dart';
 import 'package:zens_evaluation_test/features/product_list/domain/use_cases/get_options_usecase.dart';
+import 'package:zens_evaluation_test/features/product_list/presentation/widgets/cart_count_widget.dart';
 
+import '../../../../core/my_stream_controller.dart';
 import '../../../../core/provider_widget.dart';
 import '../../data/models/option.dart';
-import '../manager/product_list_manager.dart';
 
 class ProductListActionBar extends StatelessWidget {
   final GetOptionsUseCase getOptionsUseCase;
 
   ProductListActionBar({super.key, required this.getOptionsUseCase});
 
-  final DropdownController _dropdownController = DropdownController();
+  final MyStreamController<Option> _dropdownController =
+      MyStreamController<Option>();
+
 
   @override
   Widget build(BuildContext context) {
-    String selectedValue = 'Option 1';
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,48 +37,33 @@ class ProductListActionBar extends StatelessWidget {
                   return StreamBuilder<Option>(
                       stream: _dropdownController.stream,
                       initialData: data!.first,
-                      builder: (context, snapshot){
-                    return DropdownButton<Option>(
-                      value: snapshot.data!,
-                      onChanged: (newValue){
-                        _dropdownController.updateState(newValue!);
-                      },
-                      items: data.map((Option option) {
-                        return DropdownMenuItem<Option>(
-                          value: option,
-                          child: Text(option.name!, style: const TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 16.0,
-                              color: Color(0xFFFE724C)
-                          ),),
+                      builder: (context, snapshot) {
+                        return DropdownButton<Option>(
+                          value: snapshot.data!,
+                          onChanged: (newValue) {
+                            _dropdownController.updateState(newValue!);
+                          },
+                          items: data.map((Option option) {
+                            return DropdownMenuItem<Option>(
+                              value: option,
+                              child: Text(
+                                option.name!,
+                                style: const TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 16.0,
+                                    color: Color(0xFFFE724C)),
+                              ),
+                            );
+                          }).toList(),
                         );
-                      }).toList(),
-                    );
-                  });
+                      });
                 }),
           ],
         ),
-        SizedBox(
-          height: 30,
-          width: 50,
-          child: Stack(
-            children: [
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Image.asset("assets/icons/cart.png"),
-              ),
-              const Align(
-                alignment: Alignment.topRight,
-                child: CircleAvatar(
-                  radius: 10,
-                  backgroundColor: Colors.red,
-                  child: Text("5"),
-                ),
-              )
-            ],
-          ),
-        )
+        CartCountWidget(key: cartCountWidgetKey,)
       ],
     );
   }
+
+
 }
