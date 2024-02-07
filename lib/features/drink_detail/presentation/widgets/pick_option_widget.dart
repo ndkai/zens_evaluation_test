@@ -69,32 +69,37 @@ class PickOptionWidget extends StatelessWidget {
   List<Widget> _buildItem(List<Option> options, int selectedValue){
     List<Widget> widgets = <Widget>[];
     for(var i = 0; i < options.length; i++){
-      widgets.add(Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      widgets.add(Column(
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Radio(
-                value: i,
-                groupValue: selectedValue,
-                onChanged: (value) {
-                  _toggleSizeController
-                      .updateState(value as int);
-                },
+              Row(
+                children: [
+                  Radio(
+                    value: i,
+                    groupValue: selectedValue,
+                    onChanged: (value) {
+                      _toggleSizeController
+                          .updateState(value as int);
+                    },
+                  ),
+                  Text(options![i].name!,
+                      style: const TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 16.0,
+                          color: Colors.black))
+                ],
               ),
-              Text(options![i].name!,
+              Text(
+                  "+${Helper.formatCurrency(options![i].price!)}",
                   style: const TextStyle(
                       fontFamily: 'Poppins',
                       fontSize: 16.0,
                       color: Colors.black))
             ],
           ),
-          Text(
-              "+${Helper.formatCurrency(options![i].price!)}",
-              style: const TextStyle(
-                  fontFamily: 'Poppins',
-                  fontSize: 16.0,
-                  color: Colors.black))
+          const Divider()
         ],
       ));
     }

@@ -70,32 +70,37 @@ class PickToppingWidget extends StatelessWidget {
   List<Widget> _buildItem(List<Topping> toppings, int selectedValue){
     List<Widget> widgets = <Widget>[];
     for(var i = 0; i < toppings.length; i++){
-      widgets.add(Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      widgets.add(Column(
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Radio(
-                value: i,
-                groupValue: selectedValue,
-                onChanged: (value) {
-                  _toggleSizeController
-                      .updateState(value as int);
-                },
+              Row(
+                children: [
+                  Radio(
+                    value: i,
+                    groupValue: selectedValue,
+                    onChanged: (value) {
+                      _toggleSizeController
+                          .updateState(value as int);
+                    },
+                  ),
+                  Text(toppings![i].name!,
+                      style: const TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 16.0,
+                          color: Colors.black))
+                ],
               ),
-              Text(toppings![i].name!,
+              Text(
+                  "+${Helper.formatCurrency(toppings![i].price!)}",
                   style: const TextStyle(
                       fontFamily: 'Poppins',
                       fontSize: 16.0,
                       color: Colors.black))
             ],
           ),
-          Text(
-              "+${Helper.formatCurrency(toppings![i].price!)}",
-              style: const TextStyle(
-                  fontFamily: 'Poppins',
-                  fontSize: 16.0,
-                  color: Colors.black))
+          const Divider()
         ],
       ));
     }

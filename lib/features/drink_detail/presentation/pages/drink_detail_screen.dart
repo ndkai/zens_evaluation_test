@@ -43,7 +43,9 @@ class DrinkDetailScreen extends StatelessWidget {
                   PickSizeWidget(
                     getSizeUseCase: getSizeUseCase,
                   ),
+                  const SizedBox(height: 20,),
                   PickToppingWidget( getToppingsUseCase: getToppingsUseCase,),
+                  const SizedBox(height: 20,),
                   PickOptionWidget(getOptionsUseCase: getOptionsUseCase,)
                 ],
               ),
