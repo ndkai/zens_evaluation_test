@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/size_config.dart';
 
 class ProductListHeader extends StatelessWidget {
-  const ProductListHeader({Key? key});
+  const ProductListHeader({ super.key});
 
   @override
   Widget build(BuildContext context) {

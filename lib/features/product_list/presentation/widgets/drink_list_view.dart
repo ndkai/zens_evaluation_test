@@ -95,7 +95,7 @@ class DrinkListItem extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => DrinkDetailScreen(
-                  drink: drink,
+                  drink: drink, cartCount: cartCountWidgetKey.currentState!.getCartCount(),
                 )));
       },
       child: Stack(

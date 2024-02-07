@@ -23,7 +23,10 @@ class AddDrinkWidget extends StatelessWidget {
         MyStreamBroadcastController<int>();
     int drinkCount = 1;
     return Container(
-      height: SizeConfig.screenHeight! * 0.15,
+      constraints: BoxConstraints(
+        maxHeight: SizeConfig.screenHeight! * 0.2,
+        minHeight: SizeConfig.screenHeight! * 0.15,
+      ),
       color: Colors.white,
       child: Column(
         children: [
@@ -81,7 +84,7 @@ class AddDrinkWidget extends StatelessWidget {
             ],
           ),
           const SizedBox(
-            height: 10,
+            height: 20,
           ),
           InkWell(
             child: Container(
@@ -115,7 +118,8 @@ class AddDrinkWidget extends StatelessWidget {
                 ],
               ),
             ),
-          )
+          ),
+
         ],
       ),
     );

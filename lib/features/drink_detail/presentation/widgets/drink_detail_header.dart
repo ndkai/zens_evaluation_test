@@ -5,7 +5,8 @@ import '../../../product_list/presentation/widgets/cart_count_widget.dart';
 
 class DrinkDetailWidget extends StatelessWidget {
   final String img;
-  const DrinkDetailWidget({super.key, required this.img});
+  final int cartCount;
+  const DrinkDetailWidget({super.key, required this.img, required this.cartCount});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,7 @@ class DrinkDetailWidget extends StatelessWidget {
               ),
             ),
           ),
-          const CartCountWidget()
+          CartCountWidget(cartCount: cartCount,)
         ],
       ),
     );

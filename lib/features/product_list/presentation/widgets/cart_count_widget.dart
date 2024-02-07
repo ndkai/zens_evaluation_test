@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../../core/my_stream_controller.dart';
 
 class CartCountWidget extends StatefulWidget {
-  const CartCountWidget({Key? key}) : super(key: key);
+  final int cartCount;
+  const CartCountWidget({Key? key, this.cartCount = 0}) : super(key: key);
 
   @override
   State<CartCountWidget> createState() => CartCountWidgetState();
@@ -11,8 +12,17 @@ class CartCountWidget extends StatefulWidget {
 
 class CartCountWidgetState extends State<CartCountWidget> {
   final MyStreamController<int> _cartCountController = MyStreamController<int>();
-  int _initCartCountValue = 0;
+  late int _initCartCountValue;
 
+  @override
+  void initState() {
+    super.initState();
+    _initCartCountValue = widget.cartCount;
+  }
+
+  int getCartCount(){
+    return _initCartCountValue;
+  }
   void updateCartCount() {
     _initCartCountValue += 1;
     _cartCountController.updateState(_initCartCountValue);
