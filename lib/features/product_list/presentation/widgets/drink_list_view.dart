@@ -6,6 +6,7 @@ import 'package:zens_evaluation_test/features/product_list/presentation/widgets/
 import '../../../../core/helper.dart';
 import '../../../../core/my_stream_controller.dart';
 import '../../../../core/provider_widget.dart';
+import '../../../drink_detail/presentation/pages/drink_detail_screen.dart';
 import '../../domain/entities/no_param.dart';
 
 class DrinkListView extends StatelessWidget {
@@ -46,7 +47,10 @@ class DrinkListItem extends StatelessWidget {
     final MyStreamController<bool> favoriteController =
     MyStreamController<bool>();
     bool initFavorite = false;
-    return SizedBox(
+    return InkWell(
+      onTap: (){
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => DrinkDetailScreen(drink: drink,)));
+      },
       child: Stack(
         children: [
           Column(
