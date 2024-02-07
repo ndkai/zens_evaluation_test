@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:zens_evaluation_test/core/size_config.dart';
 import 'package:zens_evaluation_test/features/product_list/data/models/drink.dart';
 import 'package:zens_evaluation_test/features/product_list/domain/use_cases/get_drink_usecase.dart';
-import 'package:zens_evaluation_test/features/product_list/presentation/widgets/cart_count_widget.dart';
+
 import '../../../../core/helper.dart';
+import '../../../../core/keys.dart';
 import '../../../../core/my_stream_controller.dart';
 import '../../../../core/provider_widget.dart';
+import '../../../../core/ui.dart';
 import '../../../drink_detail/presentation/pages/drink_detail_screen.dart';
 import '../../domain/entities/no_param.dart';
 
@@ -26,30 +28,70 @@ class DrinkListView extends StatelessWidget {
             return const SizedBox();
           },
           onLoaded: (data) {
-            return ListView.builder(
-                itemCount: data!.length,
-                itemBuilder: (context, index) {
-                  return DrinkListItem(
-                    drink: data[index],
-                  );
-                });
+            return BuildDrinkLisView(key: drinkListViewKey, drinks: data!,);
           }),
     );
   }
 }
 
+class BuildDrinkLisView extends StatefulWidget {
+  final List<Drink> drinks;
+  const BuildDrinkLisView({super.key, required this.drinks});
+
+  @override
+  State<BuildDrinkLisView> createState() => BuildDrinkLisViewState();
+}
+
+class BuildDrinkLisViewState extends State<BuildDrinkLisView> {
+  late List<Drink> drinks;
+  
+  @override
+  void initState() {
+    super.initState();
+    drinks = widget.drinks;
+  }
+  final MyStreamController<int> listViewArrangeController =
+  MyStreamController<int>();
+  
+  void updateSortMethod(int method){
+    listViewArrangeController.updateState(method);
+  }
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder(
+      stream: listViewArrangeController.stream,
+      initialData: 0,
+      builder: (context, snapshot) {
+        final items = UI.sortListDrinks(drinks, snapshot.data!);
+        return ListView.builder(
+            itemCount: drinks.length,
+            itemBuilder: (context, index) {
+              return DrinkListItem(
+                drink: items[index],
+              );
+            });
+      },
+    );
+  }
+}
+
+
 class DrinkListItem extends StatelessWidget {
   final Drink drink;
 
   const DrinkListItem({super.key, required this.drink});
+
   @override
   Widget build(BuildContext context) {
     final MyStreamController<bool> favoriteController =
-    MyStreamController<bool>();
+        MyStreamController<bool>();
     bool initFavorite = false;
     return InkWell(
-      onTap: (){
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => DrinkDetailScreen(drink: drink,)));
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => DrinkDetailScreen(
+                  drink: drink,
+                )));
       },
       child: Stack(
         children: [
@@ -118,12 +160,14 @@ class DrinkListItem extends StatelessWidget {
                       "assets/icons/add.png",
                       width: 70,
                     ),
-                    onTap: (){
+                    onTap: () {
                       const snackBar = SnackBar(
-                        content: Text('Đã thêm vào giỏ hàng', style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 14.0,
-                        ),
+                        content: Text(
+                          'Đã thêm vào giỏ hàng',
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 14.0,
+                          ),
                           overflow: TextOverflow.ellipsis,
                         ),
                       );
@@ -155,7 +199,7 @@ class DrinkListItem extends StatelessWidget {
                   ),
                 ),
                 InkWell(
-                  onTap: (){
+                  onTap: () {
                     initFavorite = !initFavorite;
                     favoriteController.updateState(initFavorite);
                   },
@@ -168,13 +212,13 @@ class DrinkListItem extends StatelessWidget {
                         builder: (context, snapshot) {
                           return snapshot.data!
                               ? const Icon(
-                            Icons.favorite_outlined,
-                            color: Colors.red,
-                          )
+                                  Icons.favorite_outlined,
+                                  color: Colors.red,
+                                )
                               : const Icon(
-                            Icons.favorite_border,
-                            color: Colors.red,
-                          );
+                                  Icons.favorite_border,
+                                  color: Colors.red,
+                                );
                         }),
                   ),
                 )

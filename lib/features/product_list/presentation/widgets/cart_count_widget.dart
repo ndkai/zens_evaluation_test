@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/my_stream_controller.dart';
 
-GlobalKey<CartCountWidgetState> cartCountWidgetKey = GlobalKey<CartCountWidgetState>();
-
 class CartCountWidget extends StatefulWidget {
   const CartCountWidget({super.key});
 
@@ -13,13 +11,11 @@ class CartCountWidget extends StatefulWidget {
 
 class CartCountWidgetState extends State<CartCountWidget> {
   final MyStreamController<int> _cartCountController =
-  MyStreamController<int>();
+      MyStreamController<int>();
   int _initCartCountValue = 0;
 
-
-
-  void updateCartCount(){
-    _initCartCountValue +=1;
+  void updateCartCount() {
+    _initCartCountValue += 1;
     _cartCountController.updateState(_initCartCountValue);
   }
 
@@ -27,9 +23,7 @@ class CartCountWidgetState extends State<CartCountWidget> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10)
-      ),
+          color: Colors.white, borderRadius: BorderRadius.circular(10)),
       height: 40,
       width: 40,
       child: Stack(
@@ -68,5 +62,4 @@ class CartCountWidgetState extends State<CartCountWidget> {
     _cartCountController.dispose();
     super.dispose();
   }
-
 }

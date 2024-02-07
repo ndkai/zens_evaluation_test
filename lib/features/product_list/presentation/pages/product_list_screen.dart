@@ -5,6 +5,7 @@ import 'package:zens_evaluation_test/features/product_list/domain/use_cases/get_
 
 import '../../data/repositories/product_list_repo_impl.dart';
 import '../widgets/drink_list_view.dart';
+import '../widgets/product_list_action_bar.dart';
 import '../widgets/product_list_header.dart';
 
 class ProductListScreen extends StatelessWidget {
@@ -21,7 +22,7 @@ class ProductListScreen extends StatelessWidget {
           child: Column(
             children: [
               const ProductListHeader(),
-              // ProductListActionBar(),
+              ProductListActionBar(valueChanged: (value) {  },),
               DrinkListView(getDrinksUseCase: getDrinksUseCase,)
             ],
           ),
