@@ -2,6 +2,7 @@ import 'package:zens_evaluation_test/features/product_list/data/data_sources/pro
 import 'package:zens_evaluation_test/features/product_list/data/models/option.dart';
 
 import '../../domain/repositories/product_list_repo.dart';
+import '../models/drink.dart';
 
 class ProductListRepoImpl implements ProductListRepo{
   final ProductListDataSource productListDataSource;
@@ -11,5 +12,8 @@ class ProductListRepoImpl implements ProductListRepo{
   Future<List<Option>> getOptions() {
     return productListDataSource.getOptions();
   }
-
+  @override
+  Future<List<Drink>> getDrinks() {
+    return productListDataSource.getDrinks();
+  }
 }
