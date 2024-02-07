@@ -148,7 +148,7 @@ class DrinkListItem extends StatelessWidget {
                       ),
                       const Icon(Icons.favorite, color: Colors.red, size: 20),
                       Text(
-                        "  ${drink.favorite!}",
+                        "  ${Helper.formatNumber(drink.favorite!)}",
                         style: const TextStyle(
                           fontSize: 12.0,
                         ),

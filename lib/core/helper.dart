@@ -11,4 +11,12 @@ class Helper {
 
     return formattedAmount;
   }
+
+  static String formatNumber(double amount){
+    if(amount < 1000){
+      return amount.toStringAsFixed(0);
+    }
+      amount = amount / 1000;
+      return "${amount.toStringAsFixed(1)} k";
+  }
 }
