@@ -24,12 +24,13 @@ class AddDrinkWidget extends StatelessWidget {
     int drinkCount = 1;
     return Container(
       constraints: BoxConstraints(
-        maxHeight: SizeConfig.screenHeight! * 0.2,
+        maxHeight: SizeConfig.screenHeight! * 0.18,
         minHeight: SizeConfig.screenHeight! * 0.15,
       ),
       color: Colors.white,
       child: Column(
         children: [
+          const SizedBox(height: 10,),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

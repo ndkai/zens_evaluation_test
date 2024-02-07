@@ -12,7 +12,7 @@ class ProductListHeader extends StatelessWidget {
     return SizedBox(
       height: screenHeight * 0.3,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
