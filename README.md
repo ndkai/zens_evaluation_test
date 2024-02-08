@@ -38,9 +38,6 @@ flutter run
 ## Folder Structure
  - core
 
-## 🛠 Skills
-Javascript, HTML, CSS...
-
 
 ## Installation
 
