@@ -7,8 +7,7 @@ import 'package:zens_evaluation_test/features/drink_detail/domain/entities/total
 import 'package:zens_evaluation_test/features/drink_detail/domain/use_cases/get_options_usecase.dart';
 import 'package:zens_evaluation_test/features/drink_detail/domain/use_cases/get_size_usecase.dart';
 import 'package:zens_evaluation_test/features/drink_detail/domain/use_cases/get_toppings_usecase.dart';
-
-import '../../../product_list/data/models/drink.dart';
+import '../../../drink_list/data/models/drink.dart';
 import '../widgets/add_drink_widget.dart';
 import '../widgets/drink_detail_header.dart';
 import '../widgets/drink_detail_title.dart';

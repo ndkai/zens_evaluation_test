@@ -5,7 +5,7 @@ import 'package:zens_evaluation_test/features/drink_detail/domain/use_cases/get_
 
 import '../../../../core/helper.dart';
 import '../../../../core/provider_widget.dart';
-import '../../../product_list/domain/entities/no_param.dart';
+import '../../../drink_list/domain/entities/no_param.dart';
 
 class PickToppingWidget extends StatelessWidget {
   final GetToppingsUseCase getToppingsUseCase;

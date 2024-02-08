@@ -1,5 +1,5 @@
 import '../../../../core/usercase.dart';
-import '../../../product_list/domain/entities/no_param.dart';
+import '../../../drink_list/domain/entities/no_param.dart';
 import '../../data/models/option.dart';
 import '../repositories/drink_detail_repo.dart';
 

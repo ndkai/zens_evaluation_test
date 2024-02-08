@@ -3,7 +3,7 @@ import 'package:zens_evaluation_test/core/my_stream_controller.dart';
 
 import '../../../../core/helper.dart';
 import '../../../../core/provider_widget.dart';
-import '../../../product_list/domain/entities/no_param.dart';
+import '../../../drink_list/domain/entities/no_param.dart';
 import '../../data/models/size.dart';
 import '../../domain/use_cases/get_size_usecase.dart';
 

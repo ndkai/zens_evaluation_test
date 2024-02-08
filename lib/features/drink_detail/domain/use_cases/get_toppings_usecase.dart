@@ -1,7 +1,7 @@
 import 'package:zens_evaluation_test/features/drink_detail/domain/repositories/drink_detail_repo.dart';
 
 import '../../../../core/usercase.dart';
-import '../../../product_list/domain/entities/no_param.dart';
+import '../../../drink_list/domain/entities/no_param.dart';
 import '../../data/models/topping.dart';
 
 class GetToppingsUseCase extends UseCase<List<Topping>, NoParam>{

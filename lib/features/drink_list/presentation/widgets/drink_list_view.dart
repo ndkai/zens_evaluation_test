@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:zens_evaluation_test/core/size_config.dart';
-import 'package:zens_evaluation_test/features/product_list/data/models/drink.dart';
-import 'package:zens_evaluation_test/features/product_list/domain/use_cases/get_drink_usecase.dart';
-
 import '../../../../core/helper.dart';
 import '../../../../core/keys.dart';
 import '../../../../core/my_stream_controller.dart';
 import '../../../../core/provider_widget.dart';
 import '../../../../core/ui.dart';
 import '../../../drink_detail/presentation/pages/drink_detail_screen.dart';
+import '../../data/models/drink.dart';
 import '../../domain/entities/no_param.dart';
+import '../../domain/use_cases/get_drink_usecase.dart';
 
 class DrinkListView extends StatelessWidget {
   final GetDrinksUseCase getDrinksUseCase;

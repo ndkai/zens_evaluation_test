@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:zens_evaluation_test/core/constant.dart';
-import 'package:zens_evaluation_test/features/product_list/presentation/widgets/cart_count_widget.dart';
-
 import '../../../../core/keys.dart';
 import '../../../../core/my_stream_controller.dart';
+import 'cart_count_widget.dart';
 
-class ProductListActionBar extends StatelessWidget {
-  ProductListActionBar({Key? key}) : super(key: key);
+class DrinkListActionBar extends StatelessWidget {
+  DrinkListActionBar({Key? key}) : super(key: key);
 
   final MyStreamController<int> _dropdownController = MyStreamController<int>();
 

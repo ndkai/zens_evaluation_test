@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zens_evaluation_test/core/size_config.dart';
 
-import '../../../product_list/presentation/widgets/cart_count_widget.dart';
+import '../../../drink_list/presentation/widgets/cart_count_widget.dart';
 
 class DrinkDetailWidget extends StatelessWidget {
   final String img;

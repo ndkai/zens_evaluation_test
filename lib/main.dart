@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'features/product_list/presentation/pages/product_list_screen.dart';
+import 'features/drink_list/presentation/pages/drink_list_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Poppins',
       ),
-      home: const ProductListScreen(),
+      home: const DrinkListScreen(),
     );
   }
 }
